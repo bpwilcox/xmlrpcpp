@@ -37,15 +37,17 @@ add_library(xmlrpcpp
 
 target_link_libraries(xmlrpcpp ${ament_LIBRARIES})
 
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION include
-  FILES_MATCHING PATTERN "*.h"
-  PATTERN ".svn" EXCLUDE
+install(TARGETS xmlrpcpp
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 
-install(TARGETS xmlrpcpp DESTINATION lib/${PROJECT_NAME}
+install(DIRECTORY include/
+  DESTINATION include/
 )
 
 ament_export_include_directories(include)
+ament_export_libraries(xmlrpcpp)
 ament_package()
 
